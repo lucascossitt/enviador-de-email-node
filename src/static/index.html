@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviador de email</title>
+</head>
+<body>
+    <h1>Enviador de email</h1>
+    <label for="toAddress">Para:</label>
+    <input type="text" id="toAddress">
+    <br><br>
+    <label for="subject">Assunto:</label>
+    <input type="text" id="subject">
+    <br><br>
+    <label for="text">Texto:</label>
+    <input type="text" id="text">
+    <br><br>
+    <button id="btnEnviar">Enviar</button>
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', event => {
+        document.getElementById("btnEnviar").addEventListener('click', btnClick)
+    })
+    
+    async function btnClick(event) {
+        try {
+            event.preventDefault()
+
+            const toAddress = document.getElementById("toAddress").value
+            const subject = document.getElementById("subject").value
+            const text = document.getElementById("text").value
+
+            if (!toAddress || !subject || !text)
+                return alert("Preencha todos os campos")
+
+            const body = {
+                to_address: toAddress,
+                subject: subject,
+                text: text
+            }
+            const headers = {
+                "Content-Type": "application/json"
+            }
+
+            const response = await fetch("https://crispy-goldfish-vwv6xpxrqpvcwp5v-8080.app.github.dev/enviar-email", {method: "POST", headers: headers, body: JSON.stringify(body)})
+            if (response.ok) {
+                alert("Enviado!")
+                window.location.href = '/'
+            } else {
+                const data = await response.json()
+                alert(data)
+            }
+        } catch (err) {
+            console.error(err)
+            alert(err.stack)
+        }
+    }
+</script>
+</html>
