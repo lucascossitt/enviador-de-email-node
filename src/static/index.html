@@ -43,7 +43,7 @@
                 "Content-Type": "application/json"
             }
 
-            const response = await fetch("https://crispy-goldfish-vwv6xpxrqpvcwp5v-8080.app.github.dev/enviar-email", {method: "POST", headers: headers, body: JSON.stringify(body)})
+            const response = await fetch("http://localhost:8080/enviar-email", {method: "POST", headers: headers, body: JSON.stringify(body)})
             if (response.ok) {
                 alert("Enviado!")
                 window.location.href = '/'
