@@ -1,6 +1,6 @@
 Trabalho da matéria de arquitetura de Software
 
-Objetivo: CRUD simples utilizando Firebase
+Objetivo: Backend para envio de e-mails e frontend para preenchimento dos campos
 
 Alunos:
 - Lucas Zuin Cossitt (RA: 21009453-2)
